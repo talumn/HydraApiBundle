@@ -1,0 +1,8 @@
+.php_cs.cache
+composer.phar
+composer.lock
+
+# Symfony directories
+vendor/*
+*/logs/*
+*/cache/*
