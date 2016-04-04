@@ -36,7 +36,7 @@ class ResourceApiTest extends AbstractResourceApiTester
 
     public function testGet()
     {
-        $uri = '/resource/1';
+        $uri = 'resource/1';
         $result = array('property' => 'value');
         $this->_getTest($uri, $result, $this->authentificationMock);
 
@@ -46,7 +46,7 @@ class ResourceApiTest extends AbstractResourceApiTester
 
     public function testUpdate()
     {
-        $uri = '/resource/1';
+        $uri = 'resource/1';
         $data = array('property' => 'value');
         $requestHeaders = array('Content-Type' => 'application/json');
         $result = '{"resource" : 1}';
@@ -59,7 +59,7 @@ class ResourceApiTest extends AbstractResourceApiTester
 
     public function testCreate()
     {
-        $uri = '/resource';
+        $uri = 'resource';
         $data = array('property' => 'value');
         $requestHeaders = array('Content-Type' => 'application/json');
         $result = '{"resource" : 1}';
@@ -72,7 +72,7 @@ class ResourceApiTest extends AbstractResourceApiTester
 
     public function testDelete()
     {
-        $uri = '/resource/1';
+        $uri = 'resource/1';
         $result = true;
 
         $this->_deleteTest($uri, $this->authentificationMock, $result);
