@@ -21,6 +21,6 @@ class AbstractHydraResourceApiTest extends \PHPUnit_Framework_TestCase
     {
         $api = new TestHydraResourceApi('tests');
         $result = $api->getResourceURI(1);
-        $this->assertEquals('/tests/1', $result);
+        $this->assertEquals('tests/1', $result);
     }
 }
