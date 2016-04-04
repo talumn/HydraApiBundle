@@ -16,6 +16,6 @@ abstract class AbstractHydraResourceApi extends AbstractResourceApi
      */
     public function getResourceURI($input)
     {
-        return '/'.$this->pluralResourceName.'/'.$input;
+        return $this->pluralResourceName.'/'.$input;
     }
 }
