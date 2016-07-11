@@ -46,7 +46,7 @@ abstract class AbstractResourceApiTester extends \PHPUnit_Framework_TestCase
      * @param array                        $result
      * @param AuthenticationInterface|null $authentification
      */
-    protected function _getTest($uri, $result, $authentification)
+    protected function getTest($uri, $result, $authentification)
     {
         $clientMock = $this->getClientWithAuthenticationMock($authentification);
         $requestMock = $this->getRequestMock();
@@ -75,7 +75,7 @@ abstract class AbstractResourceApiTester extends \PHPUnit_Framework_TestCase
      * @param array                        $result
      * @param AuthenticationInterface|null $authentification
      */
-    protected function _updateTest($uri, $data, $requestHeaders, $result, $authentification)
+    protected function updateTest($uri, $data, $requestHeaders, $result, $authentification)
     {
         $clientMock = $this->getClientWithAuthenticationMock($authentification);
         $requestMock = $this->getRequestMock();
@@ -106,7 +106,7 @@ abstract class AbstractResourceApiTester extends \PHPUnit_Framework_TestCase
      * @param array                        $result
      * @param AuthenticationInterface|null $authentification
      */
-    protected function _createTest($uri, $data, $requestHeaders, $result, $authentification)
+    protected function createTest($uri, $data, $requestHeaders, $result, $authentification)
     {
         $clientMock = $this->getClientWithAuthenticationMock($authentification);
         $requestMock = $this->getRequestMock();
@@ -135,7 +135,7 @@ abstract class AbstractResourceApiTester extends \PHPUnit_Framework_TestCase
      * @param AuthenticationInterface|null $authentification
      * @param bool|true                    $result
      */
-    protected function _deleteTest($uri, $authentification, $result = true)
+    protected function deleteTest($uri, $authentification, $result = true)
     {
         $clientMock = $this->getClientWithAuthenticationMock($authentification);
         $requestMock = $this->getRequestMock();
