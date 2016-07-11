@@ -99,7 +99,7 @@ abstract class AbstractResourceApi implements ApiInterface
      *
      * @throws ApiException
      */
-    protected function _get($uri, array $options = array())
+    protected function get($uri, array $options = array())
     {
         $defaults = $this->getDefaultOptions();
         $options += $defaults;
@@ -120,7 +120,7 @@ abstract class AbstractResourceApi implements ApiInterface
      *
      * @throws ApiException
      */
-    protected function _create($uri, array $data, array $options = array())
+    protected function create($uri, array $data, array $options = array())
     {
         $defaults = $this->getDefaultOptions();
         $options += $defaults;
@@ -142,7 +142,7 @@ abstract class AbstractResourceApi implements ApiInterface
      *
      * @return array
      */
-    protected function _update($uri, array $data, array $options = array())
+    protected function update($uri, array $data, array $options = array())
     {
         $defaults = $this->getDefaultOptions();
         $options += $defaults;
@@ -163,7 +163,7 @@ abstract class AbstractResourceApi implements ApiInterface
      *
      * @return bool
      */
-    protected function _delete($uri, array $options = array())
+    protected function delete($uri, array $options = array())
     {
         $defaults = $this->getDefaultOptions();
         $options += $defaults;
