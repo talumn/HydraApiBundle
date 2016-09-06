@@ -27,5 +27,7 @@
   "autoload": {
     "psr-0": { "LaFourchette\\HydraApiBundle": "" }
   },
-  "target-dir": "LaFourchette/HydraApiBundle"
+  "target-dir": "LaFourchette/HydraApiBundle",
+  "minimum-stability": "dev",
+  "prefer-stable": true,
 }
