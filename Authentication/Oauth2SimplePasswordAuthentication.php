@@ -21,19 +21,14 @@ class Oauth2SimplePasswordAuthentication implements AuthenticationInterface
     protected $logger;
 
     /**
-     * @var Client
+     * @var Oauth2Plugin
      */
-    protected $client;
+    protected $oauth2plugin;
 
     /**
-     * @var array
+     * @var PasswordCredentials
      */
-    protected $userCredentials;
-
-    /**
-     * @var array
-     */
-    protected $credentials;
+    protected $passwordCredentials;
 
     /**
      * @var array
@@ -41,24 +36,22 @@ class Oauth2SimplePasswordAuthentication implements AuthenticationInterface
     protected $oauthToken;
 
     /**
-     * @param LoggerInterface $logger
-     * @param array           $userCredentials
-     * @param array           $clientCredentials
-     * @param array           $options
+     * @param LoggerInterface       $logger
+     * @param Oauth2Plugin          $oauth2plugin
+     * @param PasswordCredentials   $passwordCredentials
+     * @param array                 $options
      */
     public function __construct(
         LoggerInterface $logger,
-        array $userCredentials,
-        array $clientCredentials,
+        Oauth2Plugin $oauth2plugin,
+        PasswordCredentials $passwordCredentials,
         array $options = array())
     {
         $this->logger = $logger;
 
-        $this->userCredentials = $userCredentials;
-        $this->clientCredentials = $clientCredentials;
+        $this->oauth2plugin = $oauth2plugin;
+        $this->passwordCredentials = $passwordCredentials;
         $this->options = $options;
-
-        $this->client = new Client($this->options['base_url'].'oauth/v2/token', $this->options);
     }
 
     /**
@@ -108,36 +101,15 @@ class Oauth2SimplePasswordAuthentication implements AuthenticationInterface
      */
     public function onRequestBeforeSend(Event $event)
     {
-        $this->oauthToken = $this->generateToken($this->userCredentials['username'], $this->userCredentials['password']);
+        $this->oauthToken = $this->passwordCredentials->getTokenData();
 
-        $plugin = new Oauth2Plugin();
-        $plugin->setAccessToken(array(
+        $this->oauth2plugin->setAccessToken(array(
             'access_token' => $this->getOauthAccessToken(),
             'expires' => time() + $this->getOauthExpiresIn(),
         ));
 
-        $plugin->onRequestBeforeSend($event);
+        $this->oauth2plugin->onRequestBeforeSend($event);
 
         $this->logger->info('oauth2_simple_password authenticate');
-    }
-
-    /**
-     * Used by @see AuthenticationListener::handle() during an interactive login.
-     *
-     * @param string $username
-     * @param string $password
-     *
-     * @return array
-     */
-    public function generateToken($username, $password)
-    {
-        $credentials = new PasswordCredentials($this->client, array(
-            'username' => $username,
-            'password' => $password,
-            'client_id' => $this->clientCredentials['client_id'],
-            'client_secret' => $this->clientCredentials['client_secret'],
-        ));
-
-        return $credentials->getTokenData();
     }
 }
