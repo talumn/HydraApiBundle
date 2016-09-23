@@ -51,11 +51,11 @@ class Oauth2SimplePasswordAuthenticationTest extends \PHPUnit_Framework_TestCase
         $expires = time() + 999999;
         $eventMock = $this->getEventMock();
 
-        $this->passwordCredentialsMock->getTokenData()->willReturn([
+        $this->passwordCredentialsMock->getTokenData()->willReturn(array(
             'access_token' => 'access_token_value',
             'refresh_token' => 'refresh_token_value',
             'expires_in' => $expires
-        ])->shouldBeCalledTimes(1);
+        ))->shouldBeCalledTimes(1);
 
         $this->oauth2pluginMock->setAccessToken(Argument::that(function ($argument) {
             return isset($argument['access_token']) && $argument['access_token'] == 'access_token_value';
